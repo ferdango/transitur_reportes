@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Transitur - Calendario de Reservas</title>
   <meta name="description" content="Calendario de Reservas de Transitur Peru">
-  <meta http-equiv="refresh" content="0; url=calendario.pdf">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="refresh" content="0; url=calendario.pdf?v=latest">
   <link rel="canonical" href="https://transitur.pe/calendario.pdf">
   <style>
     :root {
@@ -107,7 +110,7 @@
     }
   </style>
   <script>
-    window.location.replace("calendario.pdf");
+    window.location.replace("calendario.pdf?v=" + Date.now());
   </script>
 </head>
 <body>
@@ -115,12 +118,15 @@
     <div class="spinner"></div>
     <h1>Redirigiendo al documento...</h1>
     <p>Si la redirección automática no sucede en unos segundos, haz clic en el siguiente botón para ver el documento PDF.</p>
-    <a href="calendario.pdf" class="btn">
+    <a id="pdf-link" href="calendario.pdf" class="btn">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
       </svg>
       Abrir PDF (calendario.pdf)
     </a>
   </div>
+  <script>
+    document.getElementById('pdf-link').href = "calendario.pdf?v=" + Date.now();
+  </script>
 </body>
 </html>
