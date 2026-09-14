@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Libro de Reclamaciones | Transitur Perú SAC</title>
+<meta name="description" content="Libro de Reclamaciones Virtual de Transitur Perú SAC. Registre su reclamo o queja conforme a la Ley N° 29571.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://transitur.pe/reclamos">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     CABECERA — reemplazar por el header real de transitur.pe
+     Si se integra dentro del sitio existente, borrar este bloque.
+     ============================================================ -->
+<header class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="/">
+      <span class="nav__logo">TRANSITUR</span>
+      <span class="nav__logo-sub">PERÚ</span>
+    </a>
+    <nav class="nav__links" aria-label="Navegación principal">
+      <a href="/">Inicio</a>
+      <a href="/servicios">Servicios</a>
+      <a href="/nosotros">Nosotros</a>
+      <a href="/contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- Encabezado -->
+  <div class="hero">
+    <h1 class="hero__title">Libro de reclamaciones</h1>
+    <p class="hero__code">Código de identificación: <span id="codigoLibro"></span></p>
+    <div class="hero__company">
+      <p class="hero__company-name">Transitur Perú SAC</p>
+      <p class="hero__company-ruc">RUC <span id="ruc">20XXXXXXXXX</span></p>
+    </div>
+  </div>
+
+  <form id="formReclamo" class="form" novalidate>
+
+    <!-- ── Paso 1: Consumidor reclamante ───────────────────── -->
+    <section class="card" aria-labelledby="t-consumidor">
+      <header class="card__head">
+        <h2 class="card__title" id="t-consumidor">Consumidor reclamante</h2>
+        <p class="card__sub">Por favor, ingrese sus datos personales para poder atender su reclamación</p>
+      </header>
+
+      <div class="fields">
+        <div class="field">
+          <div class="field__control">
+            <input type="text" id="nombres_completos" name="nombres_completos"
+                   class="input" placeholder=" " maxlength="150" required autocomplete="name">
+            <label class="label" for="nombres_completos">Nombres completos</label>
+          </div>
+          <p class="err" data-err-for="nombres_completos"></p>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" id="es_menor_edad" name="es_menor_edad">
+          <span class="check__box" aria-hidden="true"></span>
+          <span class="check__text">Soy menor de edad</span>
+        </label>
+
+        <div class="row">
+          <div class="field">
+            <div class="field__control field__control--select">
+              <select id="tipo_documento" name="tipo_documento" class="input input--select" required>
+                <option value="" disabled selected hidden></option>
+                <option>DNI</option>
+                <option>Carné de extranjería</option>
+                <option>Pasaporte</option>
+                <option>RUC</option>
+                <option>Otro</option>
+              </select>
+              <label class="label" for="tipo_documento">Tipo de documento</label>
+            </div>
+            <p class="help">Elija el tipo de documento de identidad que usará para identificarse.</p>
+            <p class="err" data-err-for="tipo_documento"></p>
+          </div>
+
+          <div class="field">
+            <div class="field__control">
+              <input type="text" id="numero_documento" name="numero_documento"
+                     class="input" placeholder=" " maxlength="20" required
+                     inputmode="numeric" autocomplete="off">
+              <label class="label" for="numero_documento">Número de documento</label>
+            </div>
+            <p class="help">Número de su documento de identidad.</p>
+            <p class="err" data-err-for="numero_documento"></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field__control">
+            <input type="email" id="correo_electronico" name="correo_electronico"
+                   class="input" placeholder=" " maxlength="150" required autocomplete="email">
+            <label class="label" for="correo_electronico">Correo electrónico</label>
+          </div>
+          <p class="help">Su dirección de correo electrónico para poder comunicar la respuesta a su reclamación.</p>
+          <p class="err" data-err-for="correo_electronico"></p>
+        </div>
+
+        <div class="field">
+          <div class="field__control">
+            <input type="tel" id="celular" name="celular"
+                   class="input" placeholder=" " maxlength="20" required autocomplete="tel">
+            <label class="label" for="celular">Celular</label>
+          </div>
+          <p class="help">Su número de teléfono para poder comunicar la respuesta a su reclamación.</p>
+          <p class="err" data-err-for="celular"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Paso 2: Servicio contratado ─────────────────────── -->
+    <section class="card" aria-labelledby="t-servicio">
+      <header class="card__head">
+        <h2 class="card__title" id="t-servicio">Servicio contratado</h2>
+        <p class="card__sub">Por favor, ingresa los detalles del servicio el cual quiere reclamar</p>
+      </header>
+
+      <div class="fields">
+        <div class="field">
+          <div class="field__control field__control--select">
+            <select id="servicio_contratado" name="servicio_contratado" class="input input--select" required>
+              <option value="" disabled selected hidden></option>
+              <option>Transporte turístico</option>
+              <option>Traslado / Transfer aeropuerto</option>
+              <option>Tour o paquete turístico</option>
+              <option>Alquiler de vehículo con conductor</option>
+              <option>Transporte de personal</option>
+              <option>Otro</option>
+            </select>
+            <label class="label" for="servicio_contratado">Servicio contratado</label>
+          </div>
+          <p class="help">Elija el servicio que tuviste inconvenientes</p>
+          <p class="err" data-err-for="servicio_contratado"></p>
+        </div>
+
+        <div class="field">
+          <div class="field__control">
+            <textarea id="descripcion_reclamo" name="descripcion_reclamo"
+                      class="input input--area" placeholder=" " maxlength="3000" required rows="4"></textarea>
+            <label class="label label--area" for="descripcion_reclamo">Descripción del reclamo</label>
+          </div>
+          <p class="help">Ayúdenos a identificar el producto o servicio sobre el que desea reclamar.</p>
+          <p class="err" data-err-for="descripcion_reclamo"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Paso 3: Reclamación y pedido ────────────────────── -->
+    <section class="card" aria-labelledby="t-reclamacion">
+      <header class="card__head">
+        <h2 class="card__title" id="t-reclamacion">Reclamación y pedido</h2>
+        <p class="card__sub">Por favor, cuéntenos sobre su reclamación y qué espera como solución.</p>
+      </header>
+
+      <div class="fields">
+        <div class="field">
+          <div class="field__control field__control--select">
+            <select id="tipo_reclamacion" name="tipo_reclamacion" class="input input--select" required>
+              <option value="" disabled selected hidden></option>
+              <option>Reclamo</option>
+              <option>Queja</option>
+            </select>
+            <label class="label" for="tipo_reclamacion">Tipo de reclamación</label>
+          </div>
+          <p class="help">Elija «Reclamo» si la disconformidad es con el producto o servicio. Elija «Queja» si la disconformidad es con la atención, u otros aspectos no relacionados con el producto o servicio.</p>
+          <p class="err" data-err-for="tipo_reclamacion"></p>
+        </div>
+
+        <div class="field">
+          <div class="field__control">
+            <textarea id="detalle_reclamo" name="detalle_reclamo"
+                      class="input input--area" placeholder=" " maxlength="5000" required rows="4"></textarea>
+            <label class="label label--area" for="detalle_reclamo">Detalle del reclamo</label>
+          </div>
+          <p class="help">Detalle por favor el motivo de su reclamación.</p>
+          <p class="err" data-err-for="detalle_reclamo"></p>
+        </div>
+
+        <div class="field">
+          <div class="field__control">
+            <textarea id="pedido" name="pedido"
+                      class="input input--area" placeholder=" " maxlength="3000" required rows="4"></textarea>
+            <label class="label label--area" for="pedido">Su pedido es</label>
+          </div>
+          <p class="help">Cuéntenos qué espera como solución a su reclamación.</p>
+          <p class="err" data-err-for="pedido"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Consentimiento y envío ──────────────────────────── -->
+    <div class="outro">
+      <p class="legal">
+        Al enviar esta reclamación, usted acepta y consiente expresamente que sus datos personales
+        serán tratados para gestionar su reclamación, conforme a nuestras políticas de privacidad y
+        las leyes peruanas aplicables, incluyendo la Ley N° 29733. Nos comprometemos a tratar estos
+        datos con la máxima confidencialidad y seguridad. Para más información, consulte nuestra
+        <a href="/politica-de-privacidad">política de privacidad</a> y nuestros
+        <a href="/terminos-y-condiciones">términos y condiciones</a>.
+      </p>
+
+      <label class="check check--legal">
+        <input type="checkbox" id="acepta_tratamiento_datos" name="acepta_tratamiento_datos" required>
+        <span class="check__box" aria-hidden="true"></span>
+        <span class="check__text">He leído y acepto el tratamiento de mis datos personales según lo descrito.</span>
+      </label>
+      <p class="err err--block" data-err-for="acepta_tratamiento_datos"></p>
+
+      <!-- Trampa anti-bot: invisible para personas -->
+      <div class="hp" aria-hidden="true">
+        <label for="website">No complete este campo</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button type="submit" class="btn" id="btnEnviar">
+        <span class="btn__label">Enviar reclamación</span>
+        <span class="btn__spinner" aria-hidden="true"></span>
+      </button>
+
+      <p class="err err--block err--submit" id="errGeneral" role="alert"></p>
+
+      <aside class="info">
+        <h3 class="info__title">¿Qué sucede después de enviar su reclamación?</h3>
+        <p class="info__text">
+          La empresa recibirá su reclamación y comenzará a procesarla.<br>
+          Usted recibirá un correo electrónico de confirmación con un código de seguimiento para
+          monitorizar el estado de su reclamación.<br>
+          La empresa responderá a su reclamación en un plazo máximo de 15 días hábiles conforme a
+          la Ley N° 29571.
+        </p>
+      </aside>
+    </div>
+  </form>
+
+  <!-- ── Pantalla de éxito ─────────────────────────────────── -->
+  <section id="exito" class="exito" hidden aria-live="polite">
+    <div class="exito__card">
+      <div class="exito__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <h2 class="exito__title">Reclamación registrada</h2>
+      <p class="exito__text">
+        Su reclamación fue registrada correctamente en nuestro Libro de Reclamaciones Virtual.
+        Guarde este código para hacer seguimiento:
+      </p>
+      <p class="exito__code" id="codigoSeguimiento"></p>
+      <p class="exito__meta">
+        Responderemos a su reclamación a más tardar el
+        <strong id="fechaLimite"></strong>, dentro del plazo de 15 días hábiles que establece la Ley N° 29571.
+        Enviaremos la respuesta al correo que registró.
+      </p>
+      <div class="exito__actions">
+        <button type="button" class="btn btn--ghost" id="btnImprimir">Imprimir constancia</button>
+        <a class="btn btn--link" href="/">Volver al inicio</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="assets/config.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
