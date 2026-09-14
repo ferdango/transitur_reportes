@@ -47,13 +47,9 @@ body{
 /* ── Cabecera ─────────────────────────────────────────────── */
 .nav{
   position:fixed; top:0; left:0; right:0; z-index:100;
-  background:rgba(23,26,26,.64);
-  -webkit-backdrop-filter:blur(24px);
-          backdrop-filter:blur(24px);
-}
-/* Sin soporte de backdrop-filter, el header se mantiene opaco y legible */
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-  .nav{ background:var(--negro); }
+  background:rgb(23,26,26);            /* opacidad 100% */
+  -webkit-backdrop-filter:blur(32px);
+          backdrop-filter:blur(32px);
 }
 /* El header ya no ocupa espacio: se lo devolvemos al documento */
 body{ padding-top:var(--nav-h); }
