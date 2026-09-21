@@ -8,7 +8,6 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta http-equiv="refresh" content="0; url=biblia.pdf?v=latest">
   <link rel="canonical" href="https://transitur.pe/biblia/">
   <style>
     :root {
@@ -26,57 +25,44 @@
       padding: 0;
     }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    html, body {
+      height: 100%;
       background-color: var(--bg);
       color: var(--text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 1.5rem;
-      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
-    .container {
+    /* Visor a pantalla completa: el PDF se muestra aqui mismo,
+       sin cambiar la URL de transitur.pe/biblia */
+    #visor {
+      display: block;
+      width: 100%;
+      height: 100vh;
+      border: 0;
+    }
+
+    /* Contenido alternativo: solo aparece si el navegador no sabe
+       mostrar PDFs incrustados (p. ej. Chrome en Android) */
+    .fallback {
       background: var(--card-bg);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 1rem;
       padding: 2.5rem;
       max-width: 480px;
-      width: 100%;
+      width: calc(100% - 3rem);
+      margin: 12vh auto 0;
+      text-align: center;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
-      animation: fadeIn 0.4s ease-out;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .spinner {
-      width: 48px;
-      height: 48px;
-      border: 4px solid rgba(255, 255, 255, 0.1);
-      border-left-color: var(--primary);
-      border-radius: 50%;
-      margin: 0 auto 1.5rem;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    h1 {
+    .fallback h1 {
       font-size: 1.5rem;
       font-weight: 600;
       margin-bottom: 0.75rem;
       letter-spacing: -0.025em;
     }
 
-    p {
+    .fallback p {
       color: var(--text-muted);
       font-size: 0.95rem;
       margin-bottom: 1.5rem;
@@ -109,24 +95,24 @@
       height: 18px;
     }
   </style>
-  <script>
-    window.location.replace("biblia.pdf?v=" + Date.now());
-  </script>
 </head>
 <body>
-  <div class="container">
-    <div class="spinner"></div>
-    <h1>Redirigiendo al documento...</h1>
-    <p>Si la redirección automática no sucede en unos segundos, haz clic en el siguiente botón para ver la Biblia de Reservas.</p>
-    <a id="pdf-link" href="biblia.pdf" class="btn">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-      </svg>
-      Abrir PDF (Biblia de Reservas)
-    </a>
-  </div>
+  <object id="visor" type="application/pdf">
+    <div class="fallback">
+      <h1>Biblia de Reservas</h1>
+      <p>Tu navegador no puede mostrar el documento incrustado. Haz clic en el botón para abrirlo o descargarlo.</p>
+      <a href="biblia.pdf" class="btn">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Abrir PDF (Biblia de Reservas)
+      </a>
+    </div>
+  </object>
   <script>
-    document.getElementById('pdf-link').href = "biblia.pdf?v=" + Date.now();
+    // Se asigna aqui, y no en el HTML, para forzar una sola carga
+    // con parametro anticache y que siempre se vea la version actual.
+    document.getElementById('visor').data = "biblia.pdf?v=" + Date.now();
   </script>
 </body>
 </html>
